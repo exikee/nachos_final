@@ -1,0 +1,21 @@
+#include "syscall.h"
+
+int main(){
+	int myFile;
+	char buffer[12];
+	myFile = 0;
+	Create("file.txt");
+	
+	myFile = Open("file.txt");
+	if( myFile != 0){
+		Write("File Write",10,myFile);
+		Close(myFile);
+		myFile=Open("file.txt");
+		if(myFile != 0){
+				Read( buffer,10,myFile );
+			Close(myFile);
+			Write(buffer,10,1);
+			Write("FileOpenSuccess",15,1);
+		}
+	}
+}
